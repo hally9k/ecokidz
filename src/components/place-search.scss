@@ -1,0 +1,63 @@
+@import "./forms";
+
+.search {
+  width: 500px;
+
+  .input {
+    .search-icon {
+      //   @include input-adornment-icon("../images/search-icon.svg");
+      //   background-color: var(--color-shade-secondary);
+    }
+  }
+
+  .suggestions {
+    position: relative;
+    top: 1rem;
+
+    padding: 1rem;
+
+    .suggestion-container {
+      display: flex;
+
+      &:last-child {
+        .suggestion {
+          border: 0;
+        }
+      }
+
+      .suggestion-aside {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-right: 1rem;
+
+        .suggestion-icon {
+          display: flex;
+          align-self: center;
+          width: 2.5rem;
+          height: 2rem;
+
+          //   background-image: url("../images/location.svg");
+          background-position: cover;
+          background-repeat: no-repeat;
+          background-size: 2.5rem;
+        }
+
+        .distance {
+          font-size: 0.75rem;
+        }
+      }
+
+      .suggestion {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 0.5rem;
+
+        // border-bottom: 1px solid var(--color-shade-primary);
+      }
+    }
+  }
+}

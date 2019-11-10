@@ -1,0 +1,81 @@
+@import "./button.scss";
+
+@mixin forms {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+
+  .button {
+    @include button;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+
+    width: 50%;
+  }
+
+  .form-control {
+    margin-bottom: 0.7rem;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .input-hint {
+    margin-top: 0.2rem;
+
+    font-size: 0.6rem;
+    text-align: right;
+  }
+
+  .validation-errors {
+    margin: 0;
+
+    line-height: 1rem;
+
+    text-align: center;
+  }
+
+  .sub-link {
+    margin-top: 1rem;
+
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+@mixin input-adornment-icon($icon) {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+
+  mask-image: url($icon);
+  mask-position: 50% 45%;
+  mask-repeat: no-repeat;
+  mask-size: 1rem;
+  background-color: var(--color-shade-primary-darkest);
+
+  content: "";
+}
+
+@mixin input-adornment-end-icon($icon) {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+
+  mask-image: url($icon);
+  mask-position: 50% 45%;
+  mask-repeat: no-repeat;
+  mask-size: 1rem;
+  background-color: var(--color-shade-primary-darkest);
+
+  content: "";
+}
