@@ -19,7 +19,7 @@ const useTextFieldStyles = makeStyles({
     backgroundColor: "var(--color-true-white)",
     borderRadius: "var(--radius-l)",
     boxShadow: "var(--shadow-primary)",
-    padding: "0.1rem 0.1rem 0.1rem 1rem",
+    // padding: "0.1rem 0.1rem 0.1rem 1rem",
   },
 })
 
@@ -145,7 +145,7 @@ export function PlaceSearch({
           selectedItem,
         }) => {
           const { onBlur, onFocus, ...inputProps } = getInputProps({
-            placeholder: "Start typing your address...",
+            placeholder: "Search for the place you want to report...",
           })
 
           return (
@@ -156,7 +156,7 @@ export function PlaceSearch({
                   onBlur,
                   onFocus,
                   onChange: handleChange,
-                  disableUnderline: true,
+                  // disableUnderline: true,
                   endAdornment: (
                     <InputAdornment position="start">
                       <i className="search-icon" />
