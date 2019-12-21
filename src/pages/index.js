@@ -3,8 +3,6 @@ import React, { useEffect, useState, useRef } from "react"
 import { GoogleApiWrapper } from "google-maps-react"
 
 import * as firebase from "firebase/app"
-import "firebase/firestore"
-import "firebase/analytics"
 
 import Layout from "../components/layout"
 // import Image from "../components/image"
@@ -16,6 +14,9 @@ import Button from "@material-ui/core/Button"
 let db
 
 if (typeof window !== "undefined") {
+  require("firebase/firestore")
+  require("firebase/analytics")
+
   var firebaseConfig = {
     apiKey: "AIzaSyAqq41i_fzZC0_Z8Ulcq5oSI_hH8VgeJ_Y",
     authDomain: "ecokidz-ce7c7.firebaseapp.com",
