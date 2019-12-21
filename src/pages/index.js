@@ -63,6 +63,8 @@ const IndexPage = ({ google }) => {
   function handleChange(event) {
     const value = event.currentTarget.value
 
+    setDoneMessage("")
+
     setOffenceDescription(value)
   }
 
@@ -80,6 +82,7 @@ const IndexPage = ({ google }) => {
       <br />
 
       <TextField
+        value={offenceDescription}
         onChange={handleChange}
         fullWidth={true}
         placeholder="Write a description of the eco offences commited here..."
