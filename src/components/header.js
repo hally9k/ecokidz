@@ -29,6 +29,31 @@ const Header = ({ siteTitle }) => (
         </Link>
       </h1>
     </div>
+    <div style={{ width: "100%", textAlign: "center", marginTop: "1rem" }}>
+      <Link
+        to="/"
+        style={{
+          color: `blue`,
+          textDecoration: `none`,
+          cursor: "pointer",
+        }}
+      >
+        Report Plastic
+      </Link>
+      &nbsp; &nbsp; &nbsp;
+      <span>•</span>
+      &nbsp; &nbsp; &nbsp;
+      <Link
+        to="/hall-of-shame"
+        style={{
+          color: `blue`,
+          textDecoration: `none`,
+          cursor: "pointer",
+        }}
+      >
+        Hall of Shame
+      </Link>
+    </div>
   </header>
 )
 
