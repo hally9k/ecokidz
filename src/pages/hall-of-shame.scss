@@ -1,0 +1,13 @@
+@media screen and (max-width: "800px") {
+  .hall-of-shame {
+    .place-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .offence {
+      display: none;
+    }
+  }
+}

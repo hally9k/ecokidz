@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
           paddingTop: 0,
         }}
       >
-        <main>{children}</main>
+        <main className="main">{children}</main>
         <footer>© {new Date().getFullYear()} - Eco Kidz</footer>
       </div>
     </>

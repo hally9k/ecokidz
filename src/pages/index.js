@@ -1,38 +1,13 @@
 import React, { useEffect, useState, useRef } from "react"
-// import { Link } from "gatsby"
 import { GoogleApiWrapper } from "google-maps-react"
-
-import * as firebase from "firebase/app"
-
 import Layout from "../components/layout"
-// import Image from "../components/image"
 import SEO from "../components/seo"
 import { PlaceSearch } from "../components/place-search"
 import TextField from "@material-ui/core/TextField"
 import Button from "@material-ui/core/Button"
-
-let db
-
-if (typeof window !== "undefined") {
-  require("firebase/firestore")
-  require("firebase/analytics")
-
-  var firebaseConfig = {
-    apiKey: "AIzaSyAqq41i_fzZC0_Z8Ulcq5oSI_hH8VgeJ_Y",
-    authDomain: "ecokidz-ce7c7.firebaseapp.com",
-    databaseURL: "https://ecokidz-ce7c7.firebaseio.com",
-    projectId: "ecokidz-ce7c7",
-    storageBucket: "ecokidz-ce7c7.appspot.com",
-    messagingSenderId: "124254874957",
-    appId: "1:124254874957:web:8895a2dfb2d04dd7a39b04",
-    measurementId: "G-3KZNN5G719",
-  }
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig)
-  firebase.analytics()
-
-  db = firebase.firestore()
-}
+import GreenTick from "../components/green-tick"
+import db from "../data/firestore"
+import { GoogleReviewButton } from "../components/google-review-button"
 
 const IndexPage = ({ google }) => {
   const ref = useRef()
@@ -42,22 +17,22 @@ const IndexPage = ({ google }) => {
   const [doneMessage, setDoneMessage] = useState("")
 
   useEffect(() => {
-    // const map = new google.maps.Map()
     const p = new google.maps.places.PlacesService(ref.current)
     setPlacesService(p)
   }, [google])
 
   function handleClick() {
+    console.log(selectedPlace)
+
     db.collection("hallofshame")
       .add({
         place: selectedPlace.name,
-        placeId: selectedPlace.id,
+        placeId: selectedPlace.place_id,
         offence: offenceDescription,
       })
       .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id)
-        setDoneMessage("Well done! Offence reported.")
-        setSelectedPlace(null)
+        setDoneMessage("Well done! You are a difference maker!")
         setOffenceDescription("")
       })
       .catch(function(error) {
@@ -76,47 +51,80 @@ const IndexPage = ({ google }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      {placesService && (
-        <PlaceSearch
-          google={google}
-          placesService={placesService}
-          onChange={setSelectedPlace}
+      <div className="report-form-container">
+        {placesService && (
+          <PlaceSearch
+            google={google}
+            placesService={placesService}
+            onChange={setSelectedPlace}
+          />
+        )}
+
+        <br />
+
+        <TextField
+          value={offenceDescription}
+          onChange={handleChange}
+          fullWidth={true}
+          placeholder="Write a description of the eco offences commited here..."
         />
-      )}
+        <br />
+        <br />
 
-      <br />
+        <div ref={ref} />
 
-      <TextField
-        value={offenceDescription}
-        onChange={handleChange}
-        fullWidth={true}
-        placeholder="Write a description of the eco offences commited here..."
-      />
-      <br />
-      <br />
+        <Button
+          onClick={handleClick}
+          fullWidth={true}
+          color="primary"
+          variant="contained"
+        >
+          Report
+        </Button>
+        <br />
+        <br />
 
-      <div ref={ref} />
+        {doneMessage && (
+          <>
+            <GreenTick />
+            <br />
+            <p
+              style={{
+                textAlign: "center",
+                color: "hotpink",
+                margin: 0,
+                fontWeight: 600,
+              }}
+            >
+              {doneMessage}
+            </p>
+            <p style={{ margin: 0, fontSize: "50px", lineHeight: "80px" }}>
+              <span role="img" aria-label="Sparkles emoji">
+                ✨
+              </span>
+              <span role="img" aria-label="Sparkles emoji">
+                ✨
+              </span>
+              <span role="img" aria-label="Sparkles emoji">
+                ✨
+              </span>
+            </p>
+          </>
+        )}
 
-      <Button
-        onClick={handleClick}
-        fullWidth={true}
-        color="primary"
-        variant="contained"
-      >
-        Report
-      </Button>
-      <br />
-      <br />
+        <br />
 
-      <p style={{ textAlign: "center" }}>{doneMessage}</p>
+        {selectedPlace && doneMessage && (
+          <GoogleReviewButton
+            placeName={selectedPlace.name}
+            placeId={selectedPlace.place_id}
+          />
+        )}
 
-      <br />
-      <br />
-
-      <br />
-
-      {/* <button onClick={handleClick}>Click Me</button> */}
-      {/* <Link to="/page-2/">Go to page 2</Link> */}
+        <br />
+        <br />
+        <br />
+      </div>
     </Layout>
   )
 }

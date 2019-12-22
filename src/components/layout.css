@@ -621,3 +621,14 @@ pre tt:after {
     font-size: 100%;
   }
 }
+
+.report-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
+.report-form-container > * {
+  max-width: 500px;
+}
