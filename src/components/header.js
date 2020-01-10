@@ -31,6 +31,19 @@ const Header = ({ siteTitle }) => (
     </div>
     <div style={{ width: "100%", textAlign: "center", marginTop: "1rem" }}>
       <Link
+        to="/learn"
+        style={{
+          color: `blue`,
+          textDecoration: `none`,
+          cursor: "pointer",
+        }}
+      >
+        Learn
+      </Link>
+      &nbsp; &nbsp; &nbsp;
+      <span>•</span>
+      &nbsp; &nbsp; &nbsp;
+      <Link
         to="/"
         style={{
           color: `blue`,
